@@ -1,0 +1,29 @@
+[0;1;31m×[0m iopn-backend.service - IOPn Badge Backend
+     Loaded: loaded (]8;;file://API-Script/etc/systemd/system/iopn-backend.service/etc/systemd/system/iopn-backend.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)
+     Active: [0;1;31mfailed[0m (Result: exit-code) since Wed 2025-07-16 00:25:17 UTC; 3s ago
+   Duration: 1.017s
+ Invocation: 6e08b757f8db4a038248be125273bf21
+    Process: 177487 ExecStart=/var/www/badge/backend/venv/bin/uvicorn main:app --host 0.0.0.0 --port 8000 [0;1;31m(code=exited, status=1/FAILURE)[0m
+   Main PID: 177487 (code=exited, status=1/FAILURE)
+
+Jul 16 00:25:17 API-Script systemd[1]: iopn-backend.service: Scheduled restart job, restart counter is at 5.
+Jul 16 00:25:17 API-Script systemd[1]: [0;1;38:5:185m[0;1;39m[0;1;38:5:185miopn-backend.service: Start request repeated too quickly.[0m
+Jul 16 00:25:17 API-Script systemd[1]: [0;1;38:5:185m[0;1;39m[0;1;38:5:185miopn-backend.service: Failed with result 'exit-code'.[0m
+Jul 16 00:25:17 API-Script systemd[1]: [0;1;31m[0;1;39m[0;1;31mFailed to start iopn-backend.service - IOPn Badge Backend.[0m
+
+[0;1;32m●[0m iopn-telegram-bot.service - IOPn Telegram Bot
+     Loaded: loaded (]8;;file://API-Script/etc/systemd/system/iopn-telegram-bot.service/etc/systemd/system/iopn-telegram-bot.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)
+     Active: [0;1;32mactive (running)[0m since Wed 2025-07-16 00:25:18 UTC; 2s ago
+ Invocation: 44299c7d9189412c94ef5ef86e1fa6cc
+   Main PID: 177517 (python)
+      Tasks: 2 (limit: 2318)
+     Memory: 39.5M (peak: 39.6M)
+        CPU: 447ms
+     CGroup: /system.slice/iopn-telegram-bot.service
+             └─[0;38;5;245m177517 /var/www/badge/backend/venv/bin/python bot_check.py[0m
+
+Jul 16 00:25:18 API-Script systemd[1]: Started iopn-telegram-bot.service - IOPn Telegram Bot.
+Jul 16 00:25:19 API-Script python[177517]: 2025-07-16 00:25:19,081 - __main__ - INFO - 🤖 IOPn Badge Bot is starting...
+Jul 16 00:25:19 API-Script python[177517]: 2025-07-16 00:25:19,122 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8125583202:AAEjWQ6Wz1CTZv2f6_G3zOD4LKz919A1tGE/getMe "HTTP/1.1 200 OK"
+Jul 16 00:25:19 API-Script python[177517]: 2025-07-16 00:25:19,134 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8125583202:AAEjWQ6Wz1CTZv2f6_G3zOD4LKz919A1tGE/deleteWebhook "HTTP/1.1 200 OK"
+Jul 16 00:25:19 API-Script python[177517]: 2025-07-16 00:25:19,136 - telegram.ext.Application - INFO - Application started

@@ -1,0 +1,47 @@
+Restart Backend Services:
+bash# Restart the FastAPI backend
+sudo systemctl restart iopn-backend
+
+# Restart the Telegram bot
+sudo systemctl restart iopn-telegram-bot
+
+# Check status of both services
+sudo systemctl status iopn-backend
+sudo systemctl status iopn-telegram-bot
+Additional useful commands:
+bash# Stop services
+sudo systemctl stop iopn-backend
+sudo systemctl stop iopn-telegram-bot
+
+# Start services
+sudo systemctl start iopn-backend
+sudo systemctl start iopn-telegram-bot
+
+# View logs in real-time
+sudo journalctl -u iopn-backend -f
+sudo journalctl -u iopn-telegram-bot -f
+
+# View last 50 lines of logs
+sudo journalctl -u iopn-backend -n 50
+sudo journalctl -u iopn-telegram-bot -n 50
+
+# Restart both at once
+sudo systemctl restart iopn-backend iopn-telegram-bot
+If you made changes to the code:
+bash# Pull latest changes (if using git)
+cd /var/www/badge
+git pull
+
+# If you added new Python dependencies
+cd /var/www/badge/backend
+source venv/bin/activate
+pip install -r requirements.txt
+
+# Then restart services
+sudo systemctl restart iopn-backend iopn-telegram-bot
+To check if services are running properly:
+bash# Check if backend is responding
+curl http://localhost:8000/docs
+
+# Check all services status
+sudo systemctl status iopn-backend iopn-telegram-bot
