@@ -1,0 +1,88 @@
+if (currentStep === 'welcome') {
+    return (
+      <div className="min-h-screen bg-black text-white flex items-center justify-center p-4 relative overflow-hidden">
+        <Notification 
+          {...notification} 
+          onClose={() => setNotification(prev => ({ ...prev, isVisible: false }))}
+        />
+
+        <div className="absolute inset-0 w-full h-full bg-black">
+          <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-50">
+            <source src={`${process.env.PUBLIC_URL}/background-video.mp4`} type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-black/60" />
+        </div>
+
+        <div className="relative z-10 max-w-2xl w-full text-center">
+          <img src={`${process.env.PUBLIC_URL}/logo.png`} alt="IOPn Logo" className="w-16 h-16 mb-4 mx-auto" />
+
+          <h1 className="text-3xl md:text-4xl font-bold mb-3">Welcome to the sovereign stack.</h1>
+          <p className="text-lg text-gray-300 mb-4">This is your first step toward the identity layer.</p>
+
+          <p className="text-sm text-gray-400 mb-6 max-w-lg mx-auto">
+            The Early n-Badge marks you as one of the first. One of the sovereign.
+            Claiming it now will give you an edge during the upcoming Testnet.
+          </p>
+
+          <div className={`mb-6 transition-all duration-1200 ease-out ${
+            showBadgeAnimation ? 'opacity-100 transform scale-100' : 'opacity-0 transform scale-90'
+          }`}>
+            <div className="relative w-40 h-40 mx-auto">
+              <img 
+                src={`${process.env.PUBLIC_URL}/badge.png`} 
+                alt="Early n-Badge" 
+                className="w-full h-full object-contain animate-pulse"
+              />
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-blue-600/20 blur-xl rounded-full"></div>
+            </div>
+          </div>
+
+          <p className="text-sm text-gray-300 mb-6 italic">The chain of identity starts with you.</p>
+
+          <div className="mb-6">
+            <p className="text-sm text-gray-400 mb-4">Earn your badge by verifying:</p>
+            <div className="grid grid-cols-4 gap-3 max-w-md mx-auto">
+              <div className="p-3 bg-white/5 rounded-xl border border-white/10 flex flex-col items-center gap-1">
+                <Mail className="w-5 h-5" />
+                <span className="text-xs">Email</span>
+              </div>
+              <div className="p-3 bg-white/5 rounded-xl border border-white/10 flex flex-col items-center gap-1">
+                <Twitter className="w-5 h-5" />
+                <span className="text-xs">X</span>
+              </div>
+              <div className="p-3 bg-white/5 rounded-xl border border-white/10 flex flex-col items-center gap-1">
+                <MessageCircle className="w-5 h-5" />
+                <span className="text-xs">Telegram</span>
+              </div>
+              <div className="p-3 bg-white/5 rounded-xl border border-white/10 flex flex-col items-center gap-1">
+                <Users className="w-5 h-5" />
+                <span className="text-xs">Discord</span>
+              </div>
+            </div>
+          </div>
+
+          <button
+            onClick={() => setCurrentStep('email')}
+            className="px-6 py-3 bg-white text-black rounded-xl font-semibold hover:bg-gray-200 transition-all transform hover:scale-105 inline-flex items-center gap-2"
+          >
+            Get Started
+            <ArrowRight className="w-4 h-4" />
+          </button>
+
+          {/* Add login option for returning users */}
+          <p className="mt-4 text-sm text-gray-400">
+            Already have a badge? 
+            <button
+                onClick={() => {
+                  setIsLoginFlow(true); // Set to login mode
+                  setCurrentStep('email');
+                }}
+                className="ml-2 text-white hover:text-gray-300 underline transition-colors"
+            >
+                Login here
+            </button>
+          </p>
+        </div>
+      </div>
+    );
+  }
